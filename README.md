@@ -91,3 +91,103 @@ db.users.find()
 
 ```
 db.users.find().forEach(printjson)
+```
+#Lets talk about objectId field: Its created for each document and is unique. Its generated based on the 
+1. The time the document was created,
+2. The hostname of the server running the mongo instance,
+3. The process ID of the Mongo instance that created the document
+
+From this object we can get infomation that relates to the document.
+1. Time 
+2. Date
+
+For exmaple
+
+```
+#Lets get the _id from the first document in the collection
+
+```
+db.users.find()[0]._id
+
+```
+#getTimestamp from the object
+
+```
+db.users.find(0)[0]._id.getTimestamp()
+
+```
+#Creating new objectId
+
+```
+new ObjectId
+
+```
+
+BUT
+Since this objectId is a longer complicated string to use on a url, it is good to use an indexed filed that i unique to a each document.
+To do this an example os to use the document counter to that filed
+
+function counter(username){
+	var ret = db.counters.findAndModify({query:{id:username}, update:{$inc : {next:1}}, "new":true, upsert:true});
+	return ret.next;
+
+}
+
+```
+
+db.users.insert(
+{
+    id:counter,
+    name:"Fredrick Menty Oluoch",
+    username:"fred",
+    age:"27", address:"24 street nairobi",
+    accountType:"admin",
+    email:["danstan@domain.com","onyango@domain.com","otieno@domain.com"],
+    dateCreated:new Date()
+
+});
+
+```
+
+
+OR-Not Tested Well use db.doc.count()
+
+```
+db.users.insert(
+{
+    id:db.users.count(),
+    name:"Fredrick Menty Oluoch",
+    username:"fred",
+    age:"27", address:"24 street nairobi",
+    accountType:"admin",
+    email:["danstan@domain.com","onyango@domain.com","otieno@domain.com"],
+    dateCreated:new Date()
+
+});
+
+```
+
+```
+
+db.users.save({
+	id:db.users.count(),
+	username : "Danstan Otieno Onyango",
+	email : [
+		"danstan@domain.com",
+		"danstan@domain.com"
+	],
+	phone: 0728554638,
+	address: "24 Street Nairobi",
+	age : 23,
+	accountType : "admin",
+	favourites : {
+		oss :[
+		   	"Linux",
+			"MacOsX"
+	],
+		languages : ["JavaScript", "Java"],
+		databases : ["MongoDB","PostqreSQL"]
+	},
+	loginStatus: true,
+})
+```
