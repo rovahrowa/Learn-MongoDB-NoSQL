@@ -53,3 +53,41 @@ db.users.insert(
 });
 
 ```
+
+#Insert data by building javascript objects and parsing the object to the insert function
+
+```
+var user ={}
+user.username="danstan",
+user.username="Danstan Otieno Onyango"
+user.email=["danstan@domain.com","danstan@domain.com"]
+user.age=23
+user.accountType="admin"
+//Create another object within the user object
+user.favourites={}
+user.favourites.os="Linux"
+user.favourites.language="JavaScript"
+user.favourites.database="MongoDB"
+user.dateCreated=new Date()
+db.users.save(user)
+
+```
+
+#Show the new object
+
+```
+user
+
+```
+
+#show all documents(SQL ROWS) in currect collection(SQL TABLE)
+
+```
+db.users.find()
+
+```
+
+#Show a nice json of all the documents in the current collection
+
+```
+db.users.find().forEach(printjson)
