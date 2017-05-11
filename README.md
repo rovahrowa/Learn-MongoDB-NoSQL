@@ -30,3 +30,26 @@ use newdbname
 db
 
 ```
+
+
+#Create new collections in shell
+
+```
+db.users
+
+```
+#Insert data in shell-Just define the json-You can use arrays
+
+```
+
+db.users.insert(
+{
+    username:"Fredrick Menty Oluoch", 
+    age:"27", address:"24 street nairobi", 
+    accountType:"admin", 
+    email:["danstan@domain.com","onyango@domain.com","otieno@domain.com"],
+    dateCreated:new Date()
+ 
+});
+
+```
