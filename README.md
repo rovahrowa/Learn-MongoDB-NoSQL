@@ -168,7 +168,6 @@ db.users.insert(
 ```
 
 ```
-
 db.users.save({
 	id:db.users.count(),
 	username : "Danstan Otieno Onyango",
@@ -177,8 +176,22 @@ db.users.save({
 		"danstan@domain.com"
 	],
 	phone: 0728554638,
+	address: "24 Street Nairobi",
+	age : 23,
+	accountType : "admin",
+	favourites : {
+		oss :[
+		   	"Linux",
+			"MacOsX"
+	],
+		languages : ["JavaScript", "Java"],
+		databases : ["MongoDB","PostqreSQL"]
+	},
+	loginStatus: true,
+})
+```
 
-	As you can see, You can nest objects and arrays in the database as much as you want
+As you can see, You can nest objects and arrays in the database as much as you want
 
 Foreign Keys
 
@@ -191,6 +204,8 @@ Lets do a manual way of doing foeign keys in Mongo
 
 Create accounts collection
 The username filed appears in both documents it can also just be passed for getting the account id from the accounts document where the username is the document username here in users document.
+
+
 ```
 db.accounts.insert(
 {	
@@ -224,6 +239,7 @@ db.users.save({
         },
         loginStatus: true
 })
+
 ```
 
 echo "# Learn-MongoDB-NoSQL" >> README.md
@@ -260,6 +276,7 @@ Lets do a manual way of doing foeign keys in Mongo
 
 Create accounts collection
 The username filed appears in both documents it can also just be passed for getting the account id from the accounts document where the username is the document username here in users document.
+
 ```
 db.accounts.insert(
 {	
@@ -294,10 +311,3 @@ db.users.save({
         loginStatus: true
 })
 ```
-
-echo "# Learn-MongoDB-NoSQL" >> README.md
-git init
-git add README.md
-git commit -m "Initial Commit"
-git remote add origin https://github.com/rovahrowa/Learn-MongoDB-NoSQL.git
-git push -u origin master
