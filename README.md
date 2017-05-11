@@ -91,7 +91,9 @@ db.users.find()
 
 ```
 db.users.find().forEach(printjson)
+
 ```
+
 #Lets talk about objectId field: Its created for each document and is unique. Its generated based on the 
 1. The time the document was created,
 2. The hostname of the server running the mongo instance,
@@ -103,10 +105,10 @@ From this object we can get infomation that relates to the document.
 
 For exmaple
 
-```
 #Lets get the _id from the first document in the collection
 
 ```
+
 db.users.find()[0]._id
 
 ```
@@ -116,6 +118,7 @@ db.users.find()[0]._id
 db.users.find(0)[0]._id.getTimestamp()
 
 ```
+
 #Creating new objectId
 
 ```
@@ -127,11 +130,13 @@ BUT
 Since this objectId is a longer complicated string to use on a url, it is good to use an indexed filed that i unique to a each document.
 To do this an example os to use the document counter to that filed
 
+```
 function counter(username){
 	var ret = db.counters.findAndModify({query:{id:username}, update:{$inc : {next:1}}, "new":true, upsert:true});
 	return ret.next;
 
 }
+```
 
 ```
 
@@ -242,12 +247,16 @@ db.users.save({
 
 ```
 
-echo "# Learn-MongoDB-NoSQL" >> README.md
-git init
-git add README.md
-git commit -m "Initial Commit"
-git remote add origin https://github.com/rovahrowa/Learn-MongoDB-NoSQL.git
-git push -u origin master
+```
+
+db.users.save({
+	id:db.users.count(),
+	username : "Danstan Otieno Onyango",
+	email : [
+		"danstan@domain.com",
+		"danstan@domain.com"
+	],
+	phone: 0728554638,
 	address: "24 Street Nairobi",
 	age : 23,
 	accountType : "admin",
