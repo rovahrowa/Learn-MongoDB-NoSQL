@@ -199,7 +199,8 @@ db.users.insert(
 ```
 db.users.save({
 	id:db.users.count(),
-	username : "Danstan Otieno Onyango",
+	username:"danstan",
+	name : "Danstan Otieno Onyango",
 	email : [
 		"danstan@domain.com",
 		"danstan@domain.com"
