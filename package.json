@@ -4,7 +4,8 @@
   "description": "A package to learn MongoDB in Mongo cli client and Nodejs environment",
   "main": "app.js",
   "scripts": {
-    "test": "test.js"
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,8 @@
     "mongodb": "^2.2.26"
   },
   "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
     "nodemon": "^1.11.0"
   }
 }
