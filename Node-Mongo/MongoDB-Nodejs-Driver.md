@@ -99,12 +99,12 @@ MongoClient.connect("mongodb://localhost:27017/Learn-Mongo", function(err, db) {
 
 
       //Insert user document to users collection
-      users.insert(user, {w:1}, function(err, result) {});
+      users.insertOne(user, {w:1}, function(err, result) {});
 
   }
   else {
     console.log("Not Connected")
-      console.log("Check that Mongodb is running on port 27017")
+    console.log("Check that Mongodb is running on port 27017")
   }
 });
 
@@ -131,3 +131,35 @@ MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
 });
 
 ```
+
+
+Time to Query
+Queries is of course a fundamental part of interacting with a database and Mongo DB is no exception. Fortunately for us it has a rich query interface with cursors and close to SQL concepts for slicing and dicing your datasets. To build queries we have lots of operators to choose from Mongo DB advanced queries. There are literarily tons of ways to search and ways to limit the query. Let’s look at some simple code for dealing with queries in different ways.
+
+the requires and and other initializing stuff omitted for brevity
+
+```
+
+//Fetching all the documents from collection and converting to an array
+      users.find().toArray(function(err, firstUsers) {
+          if (err){
+              console.log("An error occurred in query")
+          }
+          else{
+              console.log("Query succeed")
+              //Using the documents in the array
+              console.log("Query succeed")
+              console.log("ObjectID =" +firstUsers[0]._id)
+              console.log("Username = " +firstUsers[0].username)
+              console.log("Address = "+ firstUsers[0].address)
+              console.log("LoginStatus = "+ firstUsers[0].loginStatus)
+              console.log("Emails = "+firstUsers[0].email[0] +" and " +firstUsers[0].email[1])
+          }
+
+      })
+
+```
+You can manipulate this array as you want
+
+for example
+
