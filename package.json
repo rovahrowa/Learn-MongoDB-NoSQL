@@ -1,0 +1,25 @@
+{
+  "name": "lear-mongo-nosql",
+  "version": "1.0.0",
+  "description": "A package to learn MongoDB in Mongo cli client and Nodejs environment",
+  "main": "app.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rovahrowa/Learn-MongoDB-NoSQL.git"
+  },
+  "author": "Danstan Otieno Onyango",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rovahrowa/Learn-MongoDB-NoSQL/issues"
+  },
+  "homepage": "https://github.com/rovahrowa/Learn-MongoDB-NoSQL#readme",
+  "dependencies": {
+    "mongodb": "^2.2.26"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
