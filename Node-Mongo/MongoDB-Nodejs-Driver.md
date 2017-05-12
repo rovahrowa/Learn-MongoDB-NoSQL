@@ -149,6 +149,10 @@ the requires and and other initializing stuff omitted for brevity
               console.log("Query succeed")
               //Using the documents in the array
               console.log("Query succeed")
+              //You can manipulate this array as you want for example
+              //View the whole array
+              console.log("firstUser")
+
               console.log("ObjectID =" +firstUsers[0]._id)
               console.log("Username = " +firstUsers[0].username)
               console.log("Address = "+ firstUsers[0].address)
