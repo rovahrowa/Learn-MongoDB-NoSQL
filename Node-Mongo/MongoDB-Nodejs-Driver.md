@@ -30,5 +30,104 @@ Datatypes
 ```
 
 As we see the number type can be a little tricky due to the way integers are implemented in Javascript. The latest driver will do correct conversion up to 53 bits of complexity. If you need to handle big integers the recommendation is to use the Long class to operate on the numbers.
+Getting that connection to the database
+Let’s get around to setting up a connection with the Mongo DB database. Jumping straight into the code let’s do direct connection and then look at the code.
 
 
+```
+// Retrieve
+let MongoClient =require('mongodb').MongoClient;
+
+// Connect to the db
+MongoClient.connect("mongodb://localhost:27017/Learn-Mongo", function(err, db) {
+  if(!err) {
+    console.log("Connected");
+  }
+  else {
+    console.log("Not Connected")
+      console.log("Check that Mongodb is running on port 27017")
+  }
+});
+```
+
+
+Let’s have a quick look at how the connection code works. The Db.connect method let’s use use a uri to connect to the Mongo database, where localhost:27017 is the server host and port and exampleDb the db we wish to connect to. After the url notice the hash containing the auto_reconnect key. Auto reconnect tells the driver to retry sending a command to the server if there is a failure during its execution.
+
+Another useful option you can pass in is
+
+poolSize, this allows you to control how many tcp connections are opened in parallel. The default value for this is 5 but you can set it as high as you want. The driver will use a round-robin strategy to dispatch and read from the tcp connection.
+
+We are up and running with a connection to the database. Let’s move on and look at what collections are and how they work.
+
+This code will connect to the db, create a collection abject and add a document to that collection
+
+```
+
+// Retrieve
+//let MongoClient =require('mongodb').MongoClient;
+import MongoClient from 'mongodb'
+// Connect to the db
+MongoClient.connect("mongodb://localhost:27017/Learn-Mongo", function(err, db) {
+  if(!err) {
+    console.log("Connected");
+    //Create collection object users
+    let users = db.collection('users')
+      //Create user object to store data for a user
+
+      let user ={
+                      id:users.find().count(),
+                      username:"danstan",
+                      name : "Danstan Otieno Onyango",
+                      email : [
+                          "danstan@domain.com",
+                          "danstan@domain.com"
+                      ],
+                      phone: 728554638,
+                      address: "24 Street Nairobi",
+                      age : 23,
+                      accountType : "admin",
+                      favourites : {
+                          oss :[
+                              "Linux",
+                              "MacOsX"
+                          ],
+                          languages : ["JavaScript", "Java"],
+                          databases : ["MongoDB","PostqreSQL"]
+                      },
+                      loginStatus: true
+      }
+
+
+      //Insert user document to users collection
+      users.insert(user, {w:1}, function(err, result) {});
+
+  }
+  else {
+    console.log("Not Connected")
+      console.log("Check that Mongodb is running on port 27017")
+  }
+});
+
+```
+
+For smaller crud operations, you can do this
+
+```
+// Retrieve
+var MongoClient = require('mongodb').MongoClient;
+
+// Connect to the db
+MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
+  if(err) { return console.dir(err); }
+
+  db.collection('test', function(err, collection) {});
+
+  db.collection('test', {w:1}, function(err, collection) {});
+
+  db.createCollection('test', function(err, collection) {});
+
+  db.createCollection('test', {w:1}, function(err, collection) {});
+
+});
+
+```
